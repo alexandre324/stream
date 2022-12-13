@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Movies / Watch{% endblock %} {% block content%}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in
+messages %}
+<div class="movie-player">
+
+    <video controls autoplay name="media" width="1000rem" height="auto"
+        style="border-radius: 20px; margin-top: -100px;">
+
+        <source src="{{ message[1] }}" type="video/mp4">
+
+    </video>
+
+</div>
+<script>
+
+    document.getElementById("searchbar").style.display = "none";
+</script>
+{% endfor %}{% endif %}{% endwith %}
+
+{% endblock %}

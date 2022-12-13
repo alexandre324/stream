@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Accueil{% endblock %}
+
+{% block content%}
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages %}{% for category, message in messages %}
+{% for i in range(messages[0][1] |length - 1) %}
+<ul class="saison">
+    <li>
+        <h2 style="color: white;">Saison {{ i + 1}}</h2>
+    </li>
+    {% for u in range(messages[0][1][i + 1]|length) %}
+    <li class="episode">
+        <div>
+            <h2 class="episode_nbr" style="color: rgb(90, 90, 90);">{{ messages[0][1][i + 1][u][0] + 1 }})</h2>
+            <h2>{{ messages[0][1][i + 1][u][2] }}</h2>
+        </div>
+        <div>
+            <h2 style="color: orange">{{ messages[0][1][i + 1][u][1] }}</h2>
+            <a href="/watch?type=serie&id={{messages[0][1][0][0]}}&saison={{i + 1}}&episode={{u + 1}}">
+                <h2>Watch</h2>
+            </a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+{% endfor %}{% endif %}{% endwith %}
+
+
+<script>
+    var element = document.getElementById("home");
+    element.classList.add("selected");
+    document.getElementById("searchbar").style.display = "none";
+</script>
+
+{% endblock %}

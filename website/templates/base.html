@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" href="static/style.css?v=3.9.1">
+  <link rel=" icon" type="image/x-icon" href="/static/logo.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<header>
+  <ul class="menu-left">
+    <li class="menu-element">
+      <a id="home" href="/">Accueil</a>
+    </li>
+    <li class="menu-element">
+      <a href="/serie">Série</a>
+    </li>
+    <li class="menu-element">
+      <a href="/films">Films</a>
+    </li>
+    <!--<li class="menu-element">
+      <a href="/list">Ma liste</a>
+    </li>-->
+    <li class="toggle ">
+      <a href="/vf" class="toggle1">VF</a>
+      <a href="/vo" class="toggle2">VO</a>
+    </li>
+  </ul>
+  <ul class="menu-right">
+    <li class="menu-element" id="searchbar">
+      <form method="POST">
+        <div class="searchbar">
+          <input type="text" name="search" placeholder="Titre, Genre ...">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+    </li>
+  </ul>
+  </ul>
+</header>
+
+<body>
+
+  <div class="container">
+    {% block content %} {% endblock %}
+  </div>
+
+</body>
+
+</html>

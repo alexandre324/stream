@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}Accueil{% endblock %}
+
+{% block content%}
+{% with messages = get_flashed_messages(with_categories=True) %}
+{% if messages and messages[0][1][8] == ""%}
+<div>
+  <h5 style="color:white; margin-top: 1rem;">( {{ messages|length }} resultats )
+  </h5>
+</div>
+
+{% elif not messages%}
+
+<div>
+  <div>
+    <h3 style="color:white; margin-top: 3rem;">No result ...
+      <a class="back-home" href="/"> Go back</a>
+    </h3>
+
+  </div>
+</div>
+{% else%}
+<div>
+  <div>
+    <h3 style="color:white"><i style="color:white"> " {{ messages[0][1][8]}} " </i> ( {{ messages|length }} resultats )
+
+  </div>
+</div>
+{% endif %}
+
+<ul class=" movies">
+  {% if messages %}{% for category, message in messages %}
+  <li class="movie">
+    <a href="/{{ message[0] }}?type=film&id={{ message[1] }}">
+      <div class="movie-img"><img class="image" src="{{ message[2] }}"></div>
+      <div class="movie-infos">
+        <div class="block">
+          <h3 class="title text-movie">{{ message[3] }}</h3>
+          {% if message[0] == "episodes" %}
+          <h3 class="time text-movie">{{ message[5] }} saisons • {{ message[4] }}</h3>
+          {% else %}
+          <h3 class="time text-movie">{{ message[4] }} • {{ message[5] }} • {{ message[6] }}</h3>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  </li>
+  {% endfor %}{% endif %}{% endwith %}
+</ul>
+
+<script>
+  var element = document.getElementById("home");
+  element.classList.add("selected");
+</script>
+
+{% endblock %}
